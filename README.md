@@ -3,7 +3,7 @@ Classifies each sample in table as VoC or not (or QC fail). Adds Columns to outp
 
 You can run this on a PC (windows etc) with python3 (e.g. Anaconda Navigator and Spyder IDE) as well, if you change the directory paths for reading in files and the output file as needed.
 
-<b>This script will take the output csv table of mergeQCresults_plusMissing.py as input, and:</b>
+<b>This script will take the output csv table of mergeQCresults_plusMissing.py or mergeQCresults_plusMissing_v3.py as input, and:</b>
 
 Create 4 new columns at the end: 
 
