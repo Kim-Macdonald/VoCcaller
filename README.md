@@ -117,6 +117,10 @@ LibraryNum column will be populated with only the Library Plate # for each sampl
 
 RunNum column will be populated with the lowest LibraryPlate# to the highest for a run (if multiple per run) (e.g. if a run has libraries 200, 201, 202, 203 - then RunNum column will be 200-203 for <b>all</b> samples)
 
+![image](https://user-images.githubusercontent.com/72042148/114839150-4bf00180-9d8a-11eb-9a92-8a6a4b0fc888.png)
+
+<i>*Note that the absence of Library# 223 won't be represented in the RunNum. (it only takes the lowest and highest #s)</i>
+
 
 # Usage:
 
