@@ -8,7 +8,6 @@ You can run this on a PC (windows etc) with python3 (e.g. Anaconda Navigator and
 Create 4 new columns at the end: 
 
     VariantYesNo	VariantType	LibraryNum	RunNum
-![image](https://user-images.githubusercontent.com/72042148/114803547-7e7f0780-9d54-11eb-8f60-31f39360f45f.png)
 
 
 <b>Example output:</b>
