@@ -67,7 +67,7 @@ RunNum column will be populated with the lowest LibraryPlate# to the highest for
 
 ![image](https://user-images.githubusercontent.com/72042148/114839150-4bf00180-9d8a-11eb-9a92-8a6a4b0fc888.png)
 
-*Note that the absence of Library# 223 won't be represented in the RunNum. (it only takes the lowest and highest #s)
+<i>*Note that the absence of Library# 223 won't be represented in the RunNum. (it only takes the lowest and highest #s)</i>
 
 
 # Assumptions:
