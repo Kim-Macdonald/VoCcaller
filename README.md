@@ -18,6 +18,18 @@ Create 4 new columns at the end:
 
 Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Excess_Ambiguity), Possible, Warning.
 
+    Populates column with <b>Failed (Excess Ambiguity)</b>, if: the ['qc_pass_x'] column contains "EXCESS_AMBIGUITY" flag     {these may be mixed sequences, so this flag allows you to manually inspect these, and fail/repeat them, etc as needed}
+
+    Populates column with <b>Yes</b>, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1', 'B.1.525'])     {you can add more lineages to the Positive_values variable}
+
+    Populates column with <b>Possible</b>, if: ['lineage_x'] column value is 'none' AND ['num_observed_mutations'] column value > 4     {you can change this value as you monitor trends in your data}   {essentially, if no lineage is assigned, but VoC mutations were detected, then it should be manually inspected to confirm it is/isn't a VoC}
+
+    Populates column with <b>Warning</b>, if: ['lineage_x'] column value is NOT 'none' AND is NOT null AND ['lineage_x'] is NOT in Positive_values variable AND ['num_observed_mutations'] column value > 4     {essentially, if the lineage is a non-VoC lineage, but has VoC mutations detected}
+
+    Populates column with <b>Failed</b>, if: (['lineage_x'] column value is 'none' AND ['pct_covered_bases'] column value < 85.00) OR (['lineage_x'] column value is null AND ['pct_covered_bases'] column value is null)     {the 2nd means it has no data for either column, meaning it was one of the "missing" samples that didn't have enough data to make a consensus file - thus it fails WGS QC}
+
+    Populates column with <b>No</b>, if: ['lineage_x'] column value is NOT 'none'    {at this point, all the other criteria would have been evaluated, so anything left is a non-VoC}
+
 
 <b>VariantType:</b>
 
@@ -25,7 +37,7 @@ Populate the <b>VariantType column</b> with:
 
     (if VariantYesNo = Yes): Brazil (P.1), UK (B.1.1.7), SA (B.1.351), Nigerian (B.1.525)  
     
-                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positives variable (line 52), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
+                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positive_values variable (line 52), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
 
     (if VariantYesNo = No): Not a VoC
 
@@ -77,7 +89,7 @@ Our samples/fastq files have names such as (artificial/example fastq IDs shown b
 
 (For controls (the top 2 fastqIDs), the first part is the control/sampleID (includes date of library prep), 2nd is standardized text, 3rd is the library plate #, 4th part is barcode/index set used)
 
-The script treats these differently. Only pulls out the sampleID for samples (in sample column only). Controls are left as-is. FastqIDs are left as-is in sample_name column. 
+The script treats these differently. Only pulls out the sampleID for samples (to populate sample column only). Controls are left as-is. FastqIDs are left as-is in sample_name column. 
 
 If this doesn't fit your needs, you can comment out the ----Replace SAMPLE column string with CID only or full pos/neg cntrl name--- section in the script (near end). This will keep the fastqID in both sample and sample_name columns. 
 
