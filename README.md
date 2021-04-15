@@ -11,7 +11,7 @@ Create 4 new columns at the end:
 
 
 <b>Example output:</b>
-![image](https://user-images.githubusercontent.com/72042148/114805979-cdc73700-9d58-11eb-9da3-95707136bae2.png)
+![image](https://user-images.githubusercontent.com/72042148/114810083-382fa580-9d60-11eb-8c71-48d71242fb68.png)
 
 
 Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Excess_Ambiguity), Possible, Warning, No
