@@ -16,7 +16,7 @@ Create 4 new columns at the end:
 
 <b>VariantYesNo:</b>
 
-Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Excess_Ambiguity), Possible, Warning, No
+Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Excess_Ambiguity), Possible, Warning.
 
 
 <b>VariantType:</b>
