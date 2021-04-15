@@ -25,7 +25,7 @@ Populate the <b>VariantType column</b> with:
 
     (if VariantYesNo = Yes): Brazil (P.1), UK (B.1.1.7), SA (B.1.351), Nigerian (B.1.525)  
     
-                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positives variable (line 54), and the conditions for Variant Type in the                       script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
+                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positives variable (line 54), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
 
     (if VariantYesNo = No): Not a VoC
 
@@ -37,7 +37,7 @@ Populate the <b>VariantType column</b> with:
 
     (if VariantYesNo = Warning): Possible Contamination with ['lineage_x'] and ['watchlist_id'] (e.g. Possible Contamination with B.1.1 and P.1)  
     
-                    {This will flag anything that has a non-VoC lineage but has 5+ VoC mutations, and NO Excess_Ambiguity flag, so you can manually inspect these as well for                         mixed samples, or issues with pangolin lineage calls, etc} 
+                    {This will flag anything that has a non-VoC lineage but has 5+ VoC mutations, and NO Excess_Ambiguity flag, so you can manually inspect these as well for mixed samples, or issues with pangolin lineage calls, etc} 
 
     (if VariantYesNo = Possible): Possible P.1, Possible B.1.1.7, Possible B.1.351, Possible B.1.525  
     
