@@ -97,7 +97,7 @@ RunNum column will be populated with the lowest LibraryPlate# to the highest for
 
 # Usage:
 
-Save the mergeQCresults_plusMissing.py and addVoCcalls_RunNum.py scripts somewhere on your server or unix PC. 
+Save the mergeQCresults_plusMissing.py (or _v3.py script) and addVoCcalls_RunNum.py scripts somewhere on your server or unix PC. 
 
 Run mergeQCresults_plusMissing.py on the server, as per mergeQCresults_plusMissing.py instructions (https://github.com/Kim-Macdonald/mergeQCresults_plusMissing )
 
@@ -106,6 +106,12 @@ Then run VoCcaller script (Both are combined in command below)
 (replace [MiSeqRunID] with your MiSeqRunID/RunName or Directory for the sequencing run of interest):
 
     cd sequence/analysis/run/directory/[MiSeqRunID]; conda activate pandas; python3 path/to/mergeQCresults_plusMissing.py; python3 path/to/addVoCcalls_RunNum.py; conda deactivate
+    
+    
+    OR for artic v1.3 and ncov-tools v1.5:
+    
+    cd sequence/analysis/run/directory/[MiSeqRunID]; conda activate pandas; python3 path/to/mergeQCresults_plusMissing_v3.py; python3 path/to/addVoCcalls_RunNum.py; conda deactivate
+    
 
-Transfer the output file ([MiSeqRunID]_MissingPlus_QC_lineage_VoC_OrderedFinal_PlusVoCcalls.csv) to your PC, if desired, and merge with patient metadata, or VoC PCR data (to identify PCR negatives as possible conflicting results with WGS VoC results), etc to report out/count/summarize VoC data along with WGS QC metrics and lineages. 
+Transfer the output file ([MiSeqRunID]_MissingPlus_QC_lineage_VoC_OrderedFinal_PlusVoCcalls.csv) to your PC, if desired, and merge with patient metadata, or VoC PCR data (to identify PCR negatives as possible conflicting results with WGS VoC results (or PCR positives with non-VoC lineages) and manually inspect), etc to report out/count/summarize VoC data along with WGS QC metrics and lineages. 
 
