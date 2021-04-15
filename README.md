@@ -65,6 +65,9 @@ LibraryNum column will be populated with only the Library Plate # for each sampl
 
 RunNum column will be populated with the lowest LibraryPlate# to the highest for a WGS run (if multiple per run) (e.g. if one sequencer run has libraries 200, 201, 202, 203 - then RunNum column will be 200-203 for <b>all</b> samples)
 
+![image](https://user-images.githubusercontent.com/72042148/114839150-4bf00180-9d8a-11eb-9a92-8a6a4b0fc888.png)
+
+
 
 # Assumptions:
 
