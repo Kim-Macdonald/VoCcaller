@@ -95,6 +95,9 @@ Our samples/fastq files have names such as (artificial/example fastq IDs shown b
 
 The script treats these differently. Only pulls out the sampleID for samples (to populate sample column only). Controls are left as-is. FastqIDs are left as-is in sample_name column. 
 
+![image](https://user-images.githubusercontent.com/72042148/114841988-4647eb00-9d8d-11eb-9fa5-298eda2652f2.png)
+
+
 If this doesn't fit your needs, you can comment out the ----Replace SAMPLE column string with CID only or full pos/neg cntrl name--- section in the script (near end). This will keep the fastqID in both sample and sample_name columns. 
 
 
