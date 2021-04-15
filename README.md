@@ -93,6 +93,10 @@ Our samples/fastq files have names such as (artificial/example fastq IDs shown b
 
 (For controls (the top 2 fastqIDs), the first part is the control/sampleID (includes date of library prep), 2nd is standardized text, 3rd is the library plate #, 4th part is barcode/index set used)
 
+![Github_VoCcaller_FileNaming2](https://user-images.githubusercontent.com/72042148/114844033-447f2700-9d8f-11eb-97a4-034d2dbb7539.png)
+
+
+
 The script treats these differently. Only pulls out the sampleID for samples (to populate sample column only). Controls are left as-is. FastqIDs are left as-is in sample_name column. 
 
 ![image](https://user-images.githubusercontent.com/72042148/114841988-4647eb00-9d8d-11eb-9fa5-298eda2652f2.png)
