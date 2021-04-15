@@ -25,7 +25,7 @@ Populate the <b>VariantType column</b> with:
 
     (if VariantYesNo = Yes): Brazil (P.1), UK (B.1.1.7), SA (B.1.351), Nigerian (B.1.525)  
     
-                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positives variable (line 54), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
+                  {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positives variable (line 52), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
 
     (if VariantYesNo = No): Not a VoC
 
