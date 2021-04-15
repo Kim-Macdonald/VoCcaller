@@ -14,8 +14,12 @@ Create 4 new columns at the end:
 ![image](https://user-images.githubusercontent.com/72042148/114810083-382fa580-9d60-11eb-8c71-48d71242fb68.png)
 
 
+<b>VariantYesNo:</b>
+
 Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Excess_Ambiguity), Possible, Warning, No
 
+
+<b>VariantType:</b>
 
 Populate the <b>VariantType column</b> with: 
 
@@ -40,6 +44,14 @@ Populate the <b>VariantType column</b> with:
                     {you can specify extra lineages in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section, conditions2 and choices2 variables)}
 
 
+<b>LibraryNum: (See Sample Naming examples below) </b>
+
+LibraryNum column will be populated with only the Library Plate # for each sample
+
+
+<b>RunNum: (See Sample Naming examples below) </b>
+
+RunNum column will be populated with the lowest LibraryPlate# to the highest for a WGS run (if multiple per run) (e.g. if one sequencer run has libraries 200, 201, 202, 203 - then RunNum column will be 200-203 for <b>all</b> samples)
 
 
 # Assumptions:
@@ -72,8 +84,15 @@ If this doesn't fit your needs, you can comment out the ----Replace SAMPLE colum
 
 ## Library Plate and Run Numbers: 
 
-If your samples don't have Library Plate # in the name (as illustrated in Sample Naming above), then you can also comment out the -------LIB NUM & RUN NUM COLUMN:-------- section for adding LibraryNum and RunNum columns in the script. These columns won't be added to the end of the table (<b>it will just have the 2 VariantYesNo and VariantType columns added at the end</b>). 
+If your samples don't have Library Plate # in the name (as illustrated in Sample Naming above), then you can also comment out the -------LIB NUM & RUN NUM COLUMN:-------- section for adding LibraryNum and RunNum columns in the script. 
 
+These columns won't be added to the end of the table (<b>it will just have the 2 VariantYesNo and VariantType columns added at the end</b>). 
+
+<b>Otherwise: </b>
+
+LibraryNum column will be populated with only the Library Plate # for each sample
+
+RunNum column will be populated with the lowest LibraryPlate# to the highest for a run (if multiple per run) (e.g. if a run has libraries 200, 201, 202, 203 - then RunNum column will be 200-203 for <b>all</b> samples)
 
 
 # Usage:
@@ -88,5 +107,5 @@ Then run VoCcaller script (Both are combined in command below)
 
     cd sequence/analysis/run/directory/[MiSeqRunID]; conda activate pandas; python3 path/to/mergeQCresults_plusMissing.py; python3 path/to/addVoCcalls_RunNum.py; conda deactivate
 
-Transfer the output file () to your PC, if desired, and merge with patient metadata, or VoC PCR data (to identify PCR negatives as possible conflicting results with WGS VoC results), etc to report out/count/summarize VoC data along with WGS QC metrics and lineages. 
+Transfer the output file ([MiSeqRunID]_MissingPlus_QC_lineage_VoC_OrderedFinal_PlusVoCcalls.csv) to your PC, if desired, and merge with patient metadata, or VoC PCR data (to identify PCR negatives as possible conflicting results with WGS VoC results), etc to report out/count/summarize VoC data along with WGS QC metrics and lineages. 
 
