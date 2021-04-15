@@ -20,7 +20,7 @@ Populate the <b>VariantYesNo column</b> with either Yes, No, Failed, Failed (Exc
 
     Populates column with <b>Failed (Excess Ambiguity)</b>, if: the ['qc_pass_x'] column contains "EXCESS_AMBIGUITY" flag     {these may be mixed sequences, so this flag allows you to manually inspect these, and fail/repeat them, etc as needed}
 
-    Populates column with <b>Yes</b>, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1', 'B.1.525'])     {you can add more lineages to the Positive_values variable}
+    Populates column with *Yes*, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1', 'B.1.525'])     {you can add more lineages to the Positive_values variable}
 
     Populates column with <b>Possible</b>, if: ['lineage_x'] column value is 'none' AND ['num_observed_mutations'] column value > 4     {you can change this value as you monitor trends in your data}   {essentially, if no lineage is assigned, but VoC mutations were detected, then it should be manually inspected to confirm it is/isn't a VoC}
 
