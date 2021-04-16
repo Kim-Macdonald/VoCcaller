@@ -38,7 +38,7 @@ v2 script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VoI
 
 <b>VariantType:</b>
 
-v2 script will Populate the <b>VariantType column</b> with: 
+v2 script will Populate the <b>VariantType column</b> with either: [VoC/VoI lineage], Not a Voc, Failed WGS QC, Possible Contamination with [lineage] and [watchlist_id], Possible [VoC/VoI lineage]. 
 
     (if VariantYesNo = Yes (if lineage belongs to a VoC or VoI lineage)): 'UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','Nigerian (B.1.525)','California (B.1.427)','California (B.1.429)','India (B.1.617)','New York (B.1.526)','P.2','P.3','B.1.1.318','A.23.1','A.27'  
     
