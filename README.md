@@ -16,16 +16,16 @@ Create 4 new columns at the end:
 
 <b>VariantYesNo:</b>
 
-Note: original script calls less VoC/VoIs (B.1.1.7, B.1.351, P.1, B.1.525); v2 script will call more (see those listed below). 
+Note: original script calls less VoC/VUIs (B.1.1.7, B.1.351, P.1, B.1.525); v2 script will call more (see those listed below). 
 
 
-v2 script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VoI), No, Failed, Failed (Excess_Ambiguity), Possible, Warning.
+v2 script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VUI), No, Failed, Failed (Excess_Ambiguity), Possible, Warning.
 
     Populates column with Failed (Excess Ambiguity), if: the ['qc_pass_x'] column contains "EXCESS_AMBIGUITY" flag     {these may be mixed sequences, so this flag allows you to manually inspect these, and fail/repeat them, etc as needed}
 
-    Populates column with Yes, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1', 'B.1.427', 'B.1.429', 'B.1.617'])     {you can add more lineages to the Positive_values variable}
+    Populates column with Yes, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1'])     {you can add more lineages to the Positive_values variable}
     
-    Populates column with Yes (VoI), if: lineage matches those listed in the VoI_Values variable (line 53) (['B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27'])     {you can add more lineages to the VoI_Values variable}
+    Populates column with Yes (VUI), if: lineage matches those listed in the VUI_Values variable (line 53) (['B.1.427', 'B.1.429', 'B.1.617', 'B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27'])     {you can add more lineages to the VUI_Values variable}
 
     Populates column with Possible, if: ['lineage_x'] column value is 'none' AND ['num_observed_mutations'] column value > 4     {you can change this value as you monitor trends in your data}   {essentially, if no lineage is assigned, but VoC mutations were detected, then it should be manually inspected to confirm it is/isn't a VoC}
 
@@ -40,7 +40,7 @@ v2 script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VoI
 
 v2 script will Populate the <b>VariantType column</b> with either: [VoC/VoI lineage], Not a Voc, Failed WGS QC, Possible Contamination with [lineage] and [watchlist_id], Possible [VoC/VoI lineage]. 
 
-    (if VariantYesNo = Yes (if lineage belongs to a VoC or VoI lineage)): 'UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','Nigerian (B.1.525)','California (B.1.427)','California (B.1.429)','India (B.1.617)','New York (B.1.526)','P.2','P.3','B.1.1.318','A.23.1','A.27'  
+    (if VariantYesNo = Yes (if lineage belongs to a VoC or VUI lineage)): 'UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','Nigerian VUI (B.1.525)','California VUI (B.1.427)','California VUI (B.1.429)','India VUI (B.1.617)','New York VUI (B.1.526)','P.2 (VUI)','P.3 (VUI)','B.1.1.318 (VUI)','A.23.1 (VUI)','A.27 (VUI)'  
     
                   {note that you can add/remove VoCs and VoIs that you monitor for this - modify the Positive_values variable (line 52) or VoI_Values (line 53), and the conditions for Variant Type in the script (---ADD VARIANT COLUMNS to QC Summary Table---- section)}
 
