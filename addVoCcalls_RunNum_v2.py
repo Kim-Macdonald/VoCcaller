@@ -49,8 +49,8 @@ for dir_path, dir_names, file_names in os.walk(cwdPath):
 
 
 # Make variable to store values for positives (lineages of concern): (YOU CAN ADD TO THIS LIST, or remove from it)
-Positive_values = ['B.1.1.7', 'B.1.351', 'P.1', 'B.1.427', 'B.1.429', 'B.1.617']
-VoI_Values = ['B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27']
+Positive_values = ['B.1.1.7', 'B.1.351', 'P.1']
+VUI_Values = ['B.1.427', 'B.1.429', 'B.1.617', 'B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27']
 # df_VoCpos0 = df_QCsummary.loc[df_QCsummary['lineage_x'].isin(Positive_values)]
 # print(df_VoCpos0) 
 
@@ -72,7 +72,7 @@ df_VariantReqMatch0 = df_QCsummary
 conditions = [
     (df_VariantReqMatch0['qc_pass_x'].astype(str).str.contains('EXCESS_AMBIGUITY')),
     (df_VariantReqMatch0['lineage_x'].isin(Positive_values)),
-    (df_VariantReqMatch0['lineage_x'].isin(VoI_Values)),
+    (df_VariantReqMatch0['lineage_x'].isin(VUI_Values)),
     (df_VariantReqMatch0['lineage_x'].eq('none')) & (df_VariantReqMatch0['num_observed_mutations'] > 4),
     #Include Warning flag for samples with a non-VoC lineage AND num_observed_mutations > 4 (may be mixed sample):
     (~df_VariantReqMatch0['lineage_x'].eq('none')) & (pd.notnull(df_VariantReqMatch0['lineage_x'])) & (~df_VariantReqMatch0['lineage_x'].isin(Positive_values)) & (df_VariantReqMatch0['num_observed_mutations'] > 4),  
@@ -83,7 +83,7 @@ conditions = [
     (df_VariantReqMatch0['lineage_x'] != 'none')
 ]
 
-choices = ['Failed (Excess Ambiguity)','Yes','Yes (VoI)','Possible','Warning','Failed','Failed','No']
+choices = ['Failed (Excess Ambiguity)','Yes','Yes (VUI)','Possible','Warning','Failed','Failed','No']
 
 df_VariantReqMatch0['VariantYesNo'] = np.select(conditions, choices, default='No')
 #print(df_VariantReqMatch0)  #correct
@@ -111,7 +111,7 @@ conditions2 = [
     (df_VariantReqMatch0['VariantYesNo'].eq('No'))
 ]
 
-choices2 = ['Failed WGS QC','UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','Nigerian (B.1.525)','California (B.1.427)','California (B.1.429)','India (B.1.617)','New York (B.1.526)','P.2','P.3','B.1.1.318','A.23.1','A.27','Failed WGS QC',('Possible ' + df_VariantReqMatch0['watchlist_id']),('Possible Contamination with ' + df_VariantReqMatch0['lineage_x'] + ' and ' + df_VariantReqMatch0['watchlist_id']),'Not a VoC']
+choices2 = ['Failed WGS QC','UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','Nigerian VUI (B.1.525)','California VUI (B.1.427)','California VUI (B.1.429)','India VUI (B.1.617)','New York VUI (B.1.526)','P.2 (VUI)','P.3','B.1.1.318 (VUI)','A.23.1 (VUI)','A.27 (VUI)','Failed WGS QC',('Possible ' + df_VariantReqMatch0['watchlist_id']),('Possible Contamination with ' + df_VariantReqMatch0['lineage_x'] + ' and ' + df_VariantReqMatch0['watchlist_id']),'Not a VoC']
 
 df_VariantReqMatch0['VariantType'] = np.select(conditions2, choices2, default='Not a VoC')
 #print(df_VariantReqMatch0)  #correct
