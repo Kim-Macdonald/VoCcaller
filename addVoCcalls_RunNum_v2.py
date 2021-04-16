@@ -11,7 +11,7 @@ Created on Mon Apr 12 10:57:50 2021
 #and on laptop with:
 # pandas v1.0.5
 # python v3.8.3
-#Server has pandas v1.2.3 and python v3.8.8 (some conditions don't seem to work on server for VoC calls that work on PC)
+#Server has pandas v1.2.3 and python v3.8.8
     
 #import packages I need
 import os
@@ -21,13 +21,10 @@ import pandas as pd
 import numpy as np
 
 
-# Store current date in a variable:
+# Store current date in a variable: (can use for file naming if desired. Not used here)
 from datetime import datetime
 Today = datetime.today().strftime('%Y-%m-%d')   # output is like '2021-01-26'  
 
-
-#If you need to change a directory, you can do it this way (but you don't here):
-#os.chdir('C:/Users/KMacDo/Desktop/PythonTest')
 
 #save the current working directory (cwd) to a variable to use in everything below. 
 #For us, this would be the MiSeqRunID directory for each run - it changes each time we analyze a run, 
@@ -42,7 +39,7 @@ MiSeqRunID = os.path.basename(os.path.normpath(cwdPath))
 #print(MiSeqRunID)  #works
 
 
-# Read in QCsummary excel file (Sheet1) or csv file:
+# Read in QC summary table ( [MiSeqRunID]_MissingPlus_QC_lineage_VoC_OrderedFinal.csv ) csv file:
 for dir_path, dir_names, file_names in os.walk(cwdPath):
     for f in file_names:
         if fnmatch.fnmatch(f, '*_MissingPlus_QC_lineage_VoC_OrderedFinal.csv'):
@@ -50,7 +47,8 @@ for dir_path, dir_names, file_names in os.walk(cwdPath):
             file5 = os.path.join(cwdPath, f)
             df_QCsummary = pd.read_csv(file5)
 
-# Make variable to store values for positives (lineages of concern) and VoIs:
+
+# Make variable to store values for positives (lineages of concern): (YOU CAN ADD TO THIS LIST, or remove from it)
 Positive_values = ['B.1.1.7', 'B.1.351', 'P.1', 'B.1.427', 'B.1.429', 'B.1.617']
 VoI_Values = ['B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27']
 # df_VoCpos0 = df_QCsummary.loc[df_QCsummary['lineage_x'].isin(Positive_values)]
@@ -87,13 +85,11 @@ conditions = [
 
 choices = ['Failed (Excess Ambiguity)','Yes','Yes (VoI)','Possible','Warning','Failed','Failed','No']
 
-
-
-
 df_VariantReqMatch0['VariantYesNo'] = np.select(conditions, choices, default='No')
 #print(df_VariantReqMatch0)  #correct
 
 
+# YOU CAN ADD VoC LINEAGES TO THIS LIST (Conditions2 and Choices2), or remove from it, AS WELL:
 conditions2 = [
     (df_VariantReqMatch0['VariantYesNo'].eq('Failed (Excess Ambiguity)')),
     (df_VariantReqMatch0['lineage_x'] == "B.1.1.7"),
@@ -130,7 +126,7 @@ df_VariantReqMatch1 = df_VariantReqMatch0.sort_values(by=['VariantYesNo', 'sampl
 
 
 
-#--------LIB NUM & RUN NUM COLUMN:--------
+#--------LIB NUM & RUN NUM COLUMN:-------- (You Can Comment Out from this part, down to (but not including) the SAVE FILE section if you don't need LibraryNum & RunNum columns, or sampleID changed)
 
 #----LibraryNum & RunNum:
     
@@ -200,8 +196,10 @@ df_VariantReqMatch1[['RunNum']] = df_RunNum5
 
 
 
-#--------Replace SAMPLE column string with CID only or full pos/neg cntrl name-----------
+#--------Replace SAMPLE column string with CID/sampleID only or full pos/neg cntrl name-----------
 #REPLACE SAMPLE string in sample column with SampleID variable (just the CID):
+#Controls are left as-is (e.g. NEG20210403-nCoVWGS-221-A) b/c the 2nd item after the dash split (nCoVWGS) is >5 characters long.
+#Samples are changed (e.g. A1234567890-221-A-D05 to A1234567890) b/c the 2nd item after the dash split (the library plate #) is <5 characters long
 
 conditions = [
     (SampleLength < 5),    
@@ -269,5 +267,3 @@ df_VariantReqMatch2 = df_VariantReqMatch1.iloc[:, 1:35]
 # Save output to file:
 df_VariantReqMatch2.to_csv(MiSeqRunID + '_' + 'MissingPlus_QC_lineage_VoC_OrderedFinal_PlusVoCcalls.csv')  #Alternative file save if you don't want to use run# here (e.g. if multiple run numbers are in the VoC request sheet)
     
-
-
