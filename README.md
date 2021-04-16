@@ -25,7 +25,7 @@ v2 script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VoI
 
     Populates column with Yes, if: lineage matches those listed in the Positive_values variable (line 52) (['B.1.1.7', 'B.1.351', 'P.1', 'B.1.427', 'B.1.429', 'B.1.617'])     {you can add more lineages to the Positive_values variable}
     
-    Populates column with Yes (VoI), if: lineage matches those listed in the VoI_Values variable (line 52) (['B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27'])     {you can add more lineages to the VoI_Values variable}
+    Populates column with Yes (VoI), if: lineage matches those listed in the VoI_Values variable (line 53) (['B.1.525', 'B.1.526', 'B.1.1.318', 'P.2', 'P.3', 'A.23.1', 'A.27'])     {you can add more lineages to the VoI_Values variable}
 
     Populates column with Possible, if: ['lineage_x'] column value is 'none' AND ['num_observed_mutations'] column value > 4     {you can change this value as you monitor trends in your data}   {essentially, if no lineage is assigned, but VoC mutations were detected, then it should be manually inspected to confirm it is/isn't a VoC}
 
