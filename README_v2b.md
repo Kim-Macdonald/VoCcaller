@@ -40,7 +40,7 @@ v2b script will Populate the <b>VariantYesNo column</b> with either Yes, Yes (VO
 
 <b>VariantType:</b>
 
-v2 script will Populate the <b>VariantType column</b> with either: [VoC/VoI/Other lineage], Not a VoC, Failed WGS QC, 'Possible Pangolin error, new VOI, or Contamination with [lineage] and ['watchlist_id']', Possible [VoC/VoI/Other lineage]. 
+_v2b.py script will Populate the <b>VariantType column</b> with either: [VoC/VoI/Other lineage], Not a VoC, Failed WGS QC, 'Possible Pangolin error, new VOI, or Contamination with [lineage] and ['watchlist_id']', Possible [VoC/VoI/Other lineage]. 
 
     (if VariantYesNo = Yes (if lineage belongs to a VoC or VOI/Other lineage)): 'UK (B.1.1.7)','SA (B.1.351)','Brazil (P.1)','India (B.1.617)','India (B.1.617.1)','India (B.1.617.2)','India (B.1.617.3)','Nigerian VOI (B.1.525)','California VOI (B.1.427)','California VOI (B.1.429)','New York VOI (B.1.526)','B.1.526.1 (VOI)','P.1.1 (VOI)','P.2 (VOI)','P.3','B.1.1.318 (VOI)','A.23.1 (VOI)','A.27 (VOI)','B.1.618 (Other - triple mutant)'  
     
@@ -136,7 +136,7 @@ RunNum column will be populated with the lowest LibraryPlate# to the highest for
 
 Install pandas in its own conda environment.
 
-Save the mergeQCresults_plusMissing.py (or _v3.py script) and addVoCcalls_RunNum_v2.py scripts somewhere on your server or unix PC. 
+Save the mergeQCresults_plusMissing.py (or _v5b.py script) and addVoCcalls_RunNum_v2b.py scripts somewhere on your server or unix PC. 
 
 
 ## Do Every Time:
@@ -147,6 +147,8 @@ Then run VoCcaller script (Both are combined in command below)
 
 (replace [MiSeqRunID] with your MiSeqRunID/RunName or Directory for the sequencing run of interest):
 
+    For older versions of artic/ncov-tools:
+    
     cd sequence/analysis/run/directory/[MiSeqRunID]; conda activate pandas; python3 path/to/mergeQCresults_plusMissing.py; python3 path/to/addVoCcalls_RunNum_v2.py; conda deactivate
     
     
